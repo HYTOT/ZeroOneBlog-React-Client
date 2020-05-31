@@ -1,0 +1,9 @@
+@import './variables.scss';
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: $react-bg-color;
+  color: $react-color;
+}

@@ -1,0 +1,16 @@
+@import '../../variables.scss';
+
+.home {
+  width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
+  .carousel-item {
+    width: 100vw;
+    height: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10vw;
+    background: rgba($react-color, .2);
+  }
+}

@@ -1,0 +1,49 @@
+@import '../../variables.scss';
+
+aside {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  transform: translateX(-110vw);
+  background: rgba($react-color, .5);
+  transition: all .3s;
+  opacity: 0;
+  user-select: none;
+  &.unfold {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  .menu-block {
+    width: 60vw;
+    height: 100vh;
+    overflow-y: scroll;
+    background: $react-bg-color;
+    box-shadow: 0 0 3vw $react-bg-color;
+    .more-operations {
+      width: inherit;
+      height: 20vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4vw 0;
+      position: sticky;
+      top: 0;
+      background: $react-bg-color;
+      box-shadow: 0 1vw 3vw $react-color;
+      margin-bottom: .5vw;
+      span {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        margin: 0 5vw;
+        font: {
+          size: 6.5vw;
+          weight: bold;
+        }
+      }
+    }
+  }
+}

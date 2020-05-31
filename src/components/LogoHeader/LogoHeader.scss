@@ -1,0 +1,76 @@
+@import '../../variables.scss';
+
+header {
+  width: 100vw;
+  height: 18vw;
+  background: $react-bg-color;
+  box-shadow: 0 1vw 3vw $react-color;
+  user-select: none;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  overflow: hidden;
+  text-shadow: 0 0 2vw $react-color;
+  .top {
+    height: 18vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all .2s;
+    &.hide {
+      transform: translateY(-18vw);
+      height: 0;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      transform: skewX(-10deg);
+      transform-origin: left;
+      i {
+        font-size: 15vw;
+        margin: 2.5vw;
+      }
+      .logo-title {
+        font-size: 5vw;
+        color: white;
+      }
+    }
+    .icon-wuxupailie {
+      font-size: 6vw;
+      padding: 2vw;
+      color: white;
+      border: .5vw double #ccc;
+      border-radius: 2vw;
+      margin: 0 5vw;
+      transition: all .3s;
+      box-shadow: 0 0 2vw $react-color;
+      &:active {
+        background: #ccc;
+        transform: scale(.95);
+        box-shadow: 0 0 2vw #666 inset;
+      }
+    }
+  }
+  .bottom {
+    height: 18vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5vw;
+    .type-title {
+      font: {
+        size: 5vw;
+        weight: bold;
+      }
+      color: white;
+    }
+    .other-pages {
+      span {
+        font-size: 4.5vw;
+        margin-left: 5vw;
+        color: $react-color;
+      }
+    }
+  }
+}

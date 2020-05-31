@@ -1,0 +1,51 @@
+@import '../../variables.scss';
+
+.section-item {
+  width: inherit;
+  height: 15vw;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  background: $react-bg-color;
+  transition: all .3s;
+  margin: -.5vw 0;
+  &:active {
+    background: rgba($react-color, .7);
+  }
+  border: {
+    top: .1vw solid $react-color;
+    bottom: .1vw solid $react-color;
+  }
+  i, h3 {
+    height: 16vw;
+  }
+  i {
+    width: 13vw;
+    font-size: 6vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .title {
+    font-size: 5vw;
+    padding-left: 3vw;
+    width: 30vw;
+    color: $react-color;
+    display: flex;
+    align-items: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .title2 {
+    flex: 1;
+    color: #eee;
+    font-size: 4vw;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .icon-angle-right {
+    font-size: 4vw;
+    color: $react-color;
+  }
+}
