@@ -31,6 +31,7 @@ aside {
       padding: 4vw 0;
       position: sticky;
       top: 0;
+      z-index: 2;
       background: $react-bg-color;
       box-shadow: 0 1vw 3vw $react-color;
       margin-bottom: .5vw;
@@ -43,6 +44,9 @@ aside {
           size: 6.5vw;
           weight: bold;
         }
+      }
+      .genre-list {
+        width: 60vw;
       }
     }
   }

@@ -2,12 +2,19 @@ import Mock from 'mockjs'
 import { MockDatas } from './../utils/type'
 
 const technology:Function = ():MockDatas => {
-  return Mock.mock({
-    "list|15": [{
-      "id|+1": 0,
-      "name": "@word",
-    }]
-  }).list
+  let id = 0
+  return [
+    'React.js', 'Vue.js', 'Angular.js',
+    'Nuxt.js', 'uni-app', 'mpvue',
+    'Ant Design', 'ElementUI', 'Flutter',
+    'SpringBoot', 'SpringCloud', 'Mybatis',
+    'Linux', 'Nginx', 'Docker', 'HTML/CSS',
+  ].map((name:string) => {
+    return {
+      "id": ++id,
+      name,
+    }
+  })
 }
 
 const article:Function = ():MockDatas => {

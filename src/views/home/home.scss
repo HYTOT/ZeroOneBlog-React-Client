@@ -12,5 +12,11 @@
     align-items: center;
     font-size: 10vw;
     background: rgba($react-color, .2);
+    text-shadow: 0 0 5vw $react-color;
+    user-select: none;
+    // box-shadow: 0 0 5vw $react-color inset;
+  }
+  .blog-list {
+    margin-top: 5vw;
   }
 }

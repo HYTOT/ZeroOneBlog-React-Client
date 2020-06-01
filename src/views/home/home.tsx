@@ -1,21 +1,24 @@
 import React, { Component } from 'react'
 import LogoHeader from '../../components/LogoHeader/LogoHeader'
 import AsideMenu from '../../components/AsideMenu/AsideMenu'
+import BlogItem from '../../components/BlogItem/BlogItem'
 import axios from '../../http/axios.config'
-import { Technology } from '../../utils/interface'
+import { Technology, Article } from '../../utils/interface'
 import './home.scss'
 import { Carousel } from 'antd-mobile'
 
 interface IProp {
-  
+  history:any
 }
 
 interface IState {
   startPoint:number
   touchUp:boolean
   menuUnfold:boolean
-  genreList:Array<Technology>
+  currentGenre:string
   carouselList:Array<string>
+  genreList:Array<Technology>
+  blogList:Array<Article>
 }
 
 let timer:NodeJS.Timeout = setTimeout(() => {}, 0)
@@ -26,8 +29,10 @@ class Home extends Component<IProp, IState> {
     startPoint: 0,
     touchUp: false,
     menuUnfold: false,
+    currentGenre: '全部分类',
+    carouselList: ['React.js', 'Vue.js', 'SpringBoot', 'MySQL', 'Nginx'],
     genreList: [],
-    carouselList: ['React.js', 'Vue.js', 'SpringBoot', 'MySQL', 'Nginx']
+    blogList: [],
   }
 
   switchMenu = ():void => {
@@ -36,15 +41,32 @@ class Home extends Component<IProp, IState> {
     })
   }
 
-  getGenre = async ():Promise<void> => {
+  getGenres = async ():Promise<void> => {
     const res = (await axios.get('/sys/genre/list')).data
     res && this.setState({
       genreList: res
     })
   }
 
+  getArticles = async ():Promise<void> => {
+    const res = (await axios.get('/sys/article/list')).data
+    res && this.setState({
+      blogList: res
+    })
+  }
+
+  selectGenre = (genre:Technology):void => {
+    this.setState({
+      blogList: [],
+      menuUnfold: false,
+      currentGenre: genre.name,
+    })
+    this.getArticles()
+  }
+
   componentWillMount():void {
-    this.getGenre()
+    this.getGenres()
+    this.getArticles()
   }
 
   componentDidMount():void {
@@ -68,10 +90,12 @@ class Home extends Component<IProp, IState> {
   render() {
     return (
       <div className="home">
-        <LogoHeader hide={ this.state.touchUp }
+        <LogoHeader type={ this.state.currentGenre }
+          hide={ this.state.touchUp }
           switchMenu={ this.switchMenu }/>
         <AsideMenu unfold={ this.state.menuUnfold }
           title="技术栈：" switchMenu={ this.switchMenu }
+          selectItem={ this.selectGenre }
           list={ this.state.genreList }/>
         <Carousel autoplay infinite
           dotStyle={{ background: 'white' }}
@@ -85,20 +109,13 @@ class Home extends Component<IProp, IState> {
             )
           }
         </Carousel>
-        <h1 className="test">Test</h1>
-        <h1 className="test">Test</h1>
-        <h1 className="test">Test</h1>
-        <h1 className="test">Test</h1>
-        <h1 className="test">Test</h1>
-        <h1 className="test">Test</h1>
-        <h1 className="test">Test</h1>
-        <h1 className="test">Test</h1>
-        <h1 className="test">Test</h1>
-        <h1 className="test">Test</h1>
-        <h1 className="test">Test</h1>
-        <h1 className="test">Test</h1>
-        <h1 className="test">Test</h1>
-        <h1 className="test">Test</h1>
+        <section className="blog-list">
+          {
+            this.state.blogList.map((item:Article) =>
+              <BlogItem item={ item } history={ this.props.history }/>
+            )
+          }
+        </section>
       </div>
     )
   }

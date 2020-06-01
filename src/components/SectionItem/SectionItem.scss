@@ -1,16 +1,26 @@
 @import '../../variables.scss';
 
 .section-item {
-  width: inherit;
+  width: 60vw;
   height: 15vw;
+  position: relative;
   display: flex;
   align-items: center;
   user-select: none;
   background: $react-bg-color;
   transition: all .3s;
+  overflow: hidden;
   margin: -.5vw 0;
   &:active {
     background: rgba($react-color, .7);
+  }
+  &::after {
+    content: '';
+    width: 60vw;
+    height: 15vw;
+    position: absolute;
+    background: linear-gradient(to right, rgba($react-color, .01), rgba($react-color, .2));
+    animation: sectionItem 2s infinite linear;
   }
   border: {
     top: .1vw solid $react-color;
@@ -48,4 +58,9 @@
     font-size: 4vw;
     color: $react-color;
   }
+}
+
+@keyframes sectionItem {
+  from {transform: translateX(-100%);}
+  to {transform: translateX(100%);}
 }
