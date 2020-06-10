@@ -15,7 +15,7 @@ interface IState {
   startPoint:number
   touchUp:boolean
   menuUnfold:boolean
-  currentGenre:string
+  currentGenre:Technology
   carouselList:Array<string>
   genreList:Array<Technology>
   blogList:Array<Article>
@@ -29,7 +29,10 @@ class Home extends Component<IProp, IState> {
     startPoint: 0,
     touchUp: false,
     menuUnfold: false,
-    currentGenre: '全部分类',
+    currentGenre: {
+      id: 0,
+      name: '全部分类',
+    },
     carouselList: ['React.js', 'Vue.js', 'SpringBoot', 'MySQL', 'Nginx'],
     genreList: [],
     blogList: [],
@@ -42,14 +45,16 @@ class Home extends Component<IProp, IState> {
   }
 
   getGenres = async ():Promise<void> => {
-    const res = (await axios.get('/sys/genre/list')).data
+    const res = (await axios.get('/api/sys/genre/list')).data
     res && this.setState({
       genreList: res
     })
   }
 
   getArticles = async ():Promise<void> => {
-    const res = (await axios.get('/sys/article/list')).data
+    const res = (await axios.get(
+      `/api/sys/article/list/1/5/${this.state.currentGenre.id}`
+    )).data
     res && this.setState({
       blogList: res
     })
@@ -59,9 +64,9 @@ class Home extends Component<IProp, IState> {
     this.setState({
       blogList: [],
       menuUnfold: false,
-      currentGenre: genre.name,
+      currentGenre: genre,
     })
-    this.getArticles()
+    setTimeout(() => this.getArticles(), 200)
   }
 
   componentWillMount():void {
@@ -90,7 +95,7 @@ class Home extends Component<IProp, IState> {
   render() {
     return (
       <div className="home">
-        <LogoHeader type={ this.state.currentGenre }
+        <LogoHeader type={ this.state.currentGenre.name }
           hide={ this.state.touchUp }
           switchMenu={ this.switchMenu }/>
         <AsideMenu unfold={ this.state.menuUnfold }

@@ -25,6 +25,7 @@ export interface Article {
   createtime:string
   title:string
   genre:Technology
+  content:string
   reader:number
   messages:number
 }

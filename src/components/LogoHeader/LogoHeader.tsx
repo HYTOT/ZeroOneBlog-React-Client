@@ -17,7 +17,7 @@ class LogoHeader extends Component<IProp, IState> {
 
   render() {
     return (
-      <header>
+      <header className="logo-header">
         <div className={`top ${this.props.hide ? 'hide' : ''}`}>
           <div className="logo">
             <i className="iconfont icon-Field-Binary"></i>

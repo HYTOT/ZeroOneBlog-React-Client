@@ -1,33 +1,27 @@
 import React from 'react'
-import { Route, Switch, Redirect } from 'react-router-dom'
-import { ReactRouteConfig } from '../utils/interface'
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
 import Home from '../views/home/home'
 import Blog from '../views/blog/blog'
 import Message from '../views/message/message'
 
-const routerConfig = [
-  { path: '/', component: Home },
-  { path: '/blog', component: Blog },
-  { path: '/message', component: Message },
-]
+function RouterView() {
 
-export default function RouterView() {
-
-  const routes:Array<JSX.Element> = routerConfig.map(
-    (route:ReactRouteConfig, index:number) => {
-    return (
-      <Route key={index} path={route.path}
-        component={route.component} exact/>
-    )
-  })
-
-  routes.push(<Redirect key="99" from="/home" to="/"/>)
-  routes.push(<Redirect key="404" to="/"/>)
-
+  /**
+   * 可在 Switch 里面用插值表达式实现路由守卫
+   */
   return (
     <Switch>
-      { routes }
+      <Route key={ 0 } path="/"
+        component={ Home } exact/>
+      <Route key={ 1 } path="/blog"
+        component={ Blog } exact/>
+      <Route key={ 2 } path="/message"
+        component={ Message } exact/>
+      <Redirect key="99" from="/home" to="/"/>
+      <Redirect key="404" to="/"/>
     </Switch>
   )
 
 }
+
+export default withRouter(RouterView)

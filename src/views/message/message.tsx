@@ -1,6 +1,15 @@
 import React, { Component } from 'react'
 
-class Message extends Component {
+interface IProp {
+  
+}
+
+interface IState {
+  
+}
+
+class Message extends Component<IProp, IState> {
+
   render() {
     return (
       <div>
@@ -8,6 +17,7 @@ class Message extends Component {
       </div>
     )
   }
+
 }
 
 export default Message

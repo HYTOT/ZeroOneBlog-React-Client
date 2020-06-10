@@ -34,6 +34,6 @@ const article:Function = ():MockDatas => {
 }
 
 export const mockMapper:{ [index:string]:MockDatas } = {
-  '/sys/genre/list': technology(),
-  '/sys/article/list': article(),
+  '/api/sys/genre/list': technology(),
+  '/api/sys/article/list': article(),
 }

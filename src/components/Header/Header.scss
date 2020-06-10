@@ -1,0 +1,49 @@
+@import '../../variables.scss';
+
+.header-component {
+  width: 100vw;
+  height: 13vw;
+  user-select: none;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: $react-bg-color;
+  color: $react-color;
+  box-shadow: 0 0 3vw $react-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &::after {
+    content: '';
+    width: 100vw;
+    height: 13vw;
+    position: absolute;
+    background: linear-gradient(to left, rgba($react-color, .01), rgba($react-color, .2));
+    animation: headerComponent 3s infinite linear;
+  }
+  .header-title {
+    font-size: 5vw;
+    letter-spacing: .3vw;
+    text-shadow: 0 0 2vw $react-color;
+    transform: translateY(.5vw);
+  }
+  .back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20vw;
+    height: 13vw;
+    left: 0;
+    position: absolute;
+    i {
+      font-size: 4vw;
+      transform: rotate(180deg);
+      text-shadow: 0 0 2vw $react-color;
+    }
+  }
+}
+
+@keyframes headerComponent {
+  from {transform: translateX(100vw);}
+  to {transform: translateX(-100vw);}
+}

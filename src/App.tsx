@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import RouterView from './router/index'
 import './App.scss'
 import 'antd-mobile/dist/antd-mobile.css'
@@ -16,9 +16,9 @@ class App extends Component<IProp, IState> {
   render() {
     return (
       <div id="app">
-        <Router>
+        <BrowserRouter>
           <RouterView></RouterView>
-        </Router>
+        </BrowserRouter>
       </div>
     )
   }
